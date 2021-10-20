@@ -70,7 +70,7 @@ jobs:
       version: '2.2.401'
   - script: dotnet build --configuration $(buildConfiguration)
     displayName: 'dotnet build $(buildConfiguration)'
-  - script: ./run-tests.sh
+  - script: .\run-tests.ps1
     displayName: 'run tests'    
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/*.trx'
