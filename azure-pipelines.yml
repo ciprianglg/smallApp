@@ -80,3 +80,16 @@ jobs:
     inputs:
       testResultsFormat: VSTest
       testResultsFiles: '**/*.trx'  
+  - task: DotNetCoreCLI@2
+    displayName: "Dotnet Publish"
+    inputs:
+      command: 'publish'
+      publishWebProjects: true
+      arguments: '-o $(Pipeline.Workspace)/publish --no-build'
+
+  - task: PublishPipelineArtifact@1
+    displayName: "Publish Artifacts"
+    inputs:
+      targetPath: '$(Pipeline.Workspace)/publish'
+      artifact: 'web'
+      publishLocation: 'pipeline'
